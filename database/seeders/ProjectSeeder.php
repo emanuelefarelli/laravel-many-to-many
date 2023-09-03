@@ -21,7 +21,7 @@ class ProjectSeeder extends Seeder
         for ($i = 0; $i < 50; $i++){
             $newProject = new Project();
             $newProject->type_id = ($faker->randomElement($types))->id;
-            $newProject->title = $faker->word();
+            $newProject->title = $faker->company();
             $newProject->description = $faker->paragraphs(2,true);
             $newProject->image = $faker->imageUrl(360, 360,'animal',true, 'animals', true, 'png');
             $newProject->group_name = $faker->word();

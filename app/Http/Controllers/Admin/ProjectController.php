@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Project;
+use App\Models\Type;
 
 class ProjectController extends Controller
 {
@@ -23,7 +24,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $types = Type::all();
+        return view('admin.projects.create', compact('types'));
     }
 
     /**
@@ -50,13 +52,15 @@ class ProjectController extends Controller
         $data = $request->validate([
             'title' => ['required', 'min:1','max:34'],
             'description' => ['required','min:10','max:1000'],
-            // 'image' => ['file'],
+            'type_id' => ['required'],
+            'image' => ['file'],
             'group_name' => ['required'],
             'started_at' => ['required'],
             'finished_at' => ['required'],
             'final_score' => ['required'],
         ]);
         $data['image'] = $img_path;
+        // dd($data);
         $newProject = Project::create($data);
         $newProject->save();
         return redirect()->route('admin.projects.show', $newProject->id);    

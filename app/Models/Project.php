@@ -12,6 +12,8 @@ class Project extends Model
     protected $fillable = [
         'title',
         'description',
+        'type_id',
+        'image',
         'group_name',
         'started_at',
         'finished_at',
@@ -20,5 +22,9 @@ class Project extends Model
 
     public function type(){
         return $this->belongsTo(Type::class);
+    }
+    
+    public function technology(){
+        return $this->belongsToMany(Technology::class);
     }
 }

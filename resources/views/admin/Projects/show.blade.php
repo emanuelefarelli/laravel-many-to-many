@@ -23,7 +23,7 @@
                     @if (str_starts_with( $project->image ,'http'))
                     <img src="{{ $project->image }}" alt="{{ $project->title }}">
                     @else
-                    <img src="{{ asset ('storage/' . $project->image) }}" alt="{{ $project->title }}">
+                    <img src="{{ asset ('public/storage' . $project->image) }}" alt="{{ $project->title }}">
                     @endif
 
                     <h3>

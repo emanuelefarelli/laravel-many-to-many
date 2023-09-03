@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Model\Technology;
+use App\Models\Technology;
 
 class TechnologySeeder extends Seeder
 {
@@ -18,7 +18,9 @@ class TechnologySeeder extends Seeder
         ];
 
         foreach($technologies as $tech){
-            $newTech = new Tech();
+            $newTech = new Technology();
+            $newTech->name = $tech;
+            $newTech->save();
         }
     }
 }

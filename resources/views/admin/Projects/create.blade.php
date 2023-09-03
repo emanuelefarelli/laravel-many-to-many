@@ -20,6 +20,21 @@
 
             <div class="form-group">
                 <label for="title">
+                    <h3>
+                        Select Project Type:
+                    </h3>
+                </label>
+                <select class="form-select" name="type_id" id="type_id">
+                    @foreach($types as $type)
+                        <option value="{{ $type->id }}">
+                            {{ $type->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="description">
                     <h3 class="mt-3">    
                         Insert Project Description:
                     </h3>
@@ -28,7 +43,7 @@
             </div>
             
             <div class="form-group">
-                <label for="title">
+                <label for="group_name">
                     <h3 class="mt-3">    
                         Insert Group Name:
                     </h3>
@@ -37,7 +52,7 @@
             </div>
 
             <div class="form-group">
-                <label for="title">
+                <label for="image">
                     <h3 class="mt-3">    
                         Insert Image:
                     </h3>
@@ -46,7 +61,7 @@
             </div>
 
             <div class="form-group">
-                <label for="title">
+                <label for="started_at">
                     <h3 class="mt-3">    
                         When the project started?
                     </h3>
@@ -55,7 +70,7 @@
             </div>
 
             <div class="form-group">
-                <label for="title">
+                <label for="finished_at">
                     <h3 class="mt-3">    
                         When the project ended?
                     </h3>
@@ -64,7 +79,7 @@
             </div>
 
             <div class="form-group">
-                <label for="title">
+                <label for="final_score">
                     <h3 class="mt-3">    
                         What whas the final score?
                     </h3>
