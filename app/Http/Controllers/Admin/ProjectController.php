@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use App\Models\Technology;
 use App\Models\Project;
 use App\Models\Type;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class ProjectController extends Controller
 {
@@ -24,8 +26,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
+        $technologies = Technology::all();
         $types = Type::all();
-        return view('admin.projects.create', compact('types'));
+        return view('admin.projects.create', compact('types','technologies'));
     }
 
     /**
@@ -51,7 +54,7 @@ class ProjectController extends Controller
 
         $data = $request->validate([
             'title' => ['required', 'min:1','max:34'],
-            'description' => ['required','min:10','max:1000'],
+            'description' => ['required','min:5','max:1000'],
             'type_id' => ['required'],
             'image' => ['file'],
             'group_name' => ['required'],
@@ -63,8 +66,12 @@ class ProjectController extends Controller
         // dd($data);
         $newProject = Project::create($data);
         $newProject->save();
-        return redirect()->route('admin.projects.show', $newProject->id);    
 
+        if($request->has('technologies')){
+            $newProject->technologies()->sync($request->technologies);
+        }
+
+        return redirect()->route('admin.projects.show', $newProject->id);    
     }
 
     /**

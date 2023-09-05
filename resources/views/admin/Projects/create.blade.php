@@ -18,8 +18,8 @@
                 <input type="text" class="form-control" id="title" name="title" placeholder="Enter project title">
             </div>
 
-            <div class="form-group">
-                <label for="title">
+            <div class="form-group mb-3">
+                <label for="type_id">
                     <h3>
                         Select Project Type:
                     </h3>
@@ -31,6 +31,22 @@
                         </option>
                     @endforeach
                 </select>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    <label for="technologies">
+                        <h3>
+                            Select Project Type:
+                        </h3>
+                    </label>
+                </div>
+                @foreach($technologies as $tech)
+                    <input type="checkbox" name="technologies[]" id="technologies" value="{{ $tech->id }}">
+                    <label for="technologies">
+                        {{ $tech->name }}
+                    </label >
+                @endforeach
             </div>
 
             <div class="form-group">

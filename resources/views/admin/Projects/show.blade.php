@@ -8,9 +8,14 @@
                     <h1>
                         {{ $project->title }}
                     </h1>
-                    <span>
+                    <p>
                         {{ $project->type->name }}
+                    </p>
+                    @foreach($project->technologies as $tech)
+                    <span class="me-1">
+                        {{ $tech->name }} -
                     </span>
+                    @endforeach
                 </div>
                 <div class="card-body">
                     <h3 class="card-title">
